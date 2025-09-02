@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mansa Enterprises - Welcome</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+        }
+        .logo {
+            font-size: 4rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            opacity: 0;
+            animation: fadeInUp 2s forwards;
+        }
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .tagline {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            opacity: 0;
+            animation: fadeInUp 2s 1.5s forwards;
+        }
+        .buttons {
+            margin-top: 40px;
+            opacity: 0;
+            animation: fadeInUp 2s 3.5s forwards;
+        }
+        .btn {
+            background: white;
+            color: #3B82F6;
+            border: none;
+            padding: 12px 30px;
+            margin: 0 15px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            background: #2563eb;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">MANSA ENTERPRISES</div>
+        <div class="tagline">Premium E-commerce Experience</div>
+        <div class="buttons">
+            <a href="login.html" class="btn">Login</a>
+            <a href="signup.html" class="btn">Sign Up</a>
+        </div>
+    </div>
+</body>
+</html>
