@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Mansa Enterprises</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3B82F6;
+            --secondary: #10B981;
+            --accent: #F59E0B;
+            --dark: #1F2937;
+            --light: #F9FAFB;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link {
+            position: relative;
+            padding: 8px 0;
+            margin: 0 15px;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .profile-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            color: var(--dark);
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .profile-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin-right: 20px;
+        }
+        
+        .order-item, .wishlist-item {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logout-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .logout-btn:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .profile-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-avatar {
+                margin-bottom: 20px;
+                margin-right: 0;
+            }
+            
+            .order-item, .wishlist-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container">
+            <nav class="flex justify-between items-center py-4">
+                <div class="logo text-2xl font-bold text-blue-600">Mansa Enterprises</div>
+                
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="nav-link text-gray-700 hover:text-blue-600">Home</a>
+                    <a href="#products" class="nav-link text-gray-700 hover:text-blue-600">Products</a>
+                    <a href="categories.html" class="nav-link text-gray-700 hover:text-blue-600">Categories</a>
+                    <a href="#deals" class="nav-link text-gray-700 hover:text-blue-600">Deals</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-blue-600">About</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <input type="text" placeholder="Search products..." class="search-bar">
+                        <i class="fas fa-search absolute right-3 top-2 text-gray-400"></i>
+                    </div>
+                    
+                    <div class="relative user-profile">
+                        <i class="fas fa-user-circle text-2xl text-gray-600"></i>
+                        <div class="profile-dropdown">
+                            <h4 class="font-semibold mb-3">Welcome Back!</h4>
+                            <div class="space-y-2">
+                                <a href="profile.html" class="block text-gray-600 hover:text-blue-600">My Profile</a>
+                                <a href="#order-history" class="block text-gray-600 hover:text-blue-600">Order History</a>
+                                <a href="#wishlist" class="block text-gray-600 hover:text-blue-600">Wishlist</a>
+                                <a href="#" class="block text-red-600 hover:text-red-700" onclick="logout()">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative">
+                        <i class="fas fa-shopping-cart text-2xl text-gray-600"></i>
+                        <span class="cart-badge">3</span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Profile Content -->
+    <div class="container">
+        <h1 class="text-4xl font-light text-white text-center mt-10 mb-10">My Profile</h1>
+        
+        <!-- Profile Overview -->
+        <div class="profile-section">
+            <h2 class="section-title">Profile Overview</h2>
+            <div class="profile-info">
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">John Doe</h3>
+                    <p class="text-gray-600">johndoe@example.com</p>
+                    <p class="text-gray-600">Member since: January 2023</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Order History -->
+        <div id="order-history" class="profile-section">
+            <h2 class="section-title">Order History</h2>
+            <div class="order-item">
+                <div>
+                    <h4 class="font-semibold">Order #12345</h4>
+                    <p class="text-gray-600">Floral Summer Dress - $79.99</p>
+                    <p class="text-sm text-gray-500">Ordered on: 2023-10-15</p>
+                </div>
+                <div class="text-right">
+                    <span class="text-green-600 font-semibold">Delivered</span>
+                    <button class="ml-4 text-blue-600 hover:text-blue-800">View Details</button>
+                </div>
+            </div>
+            <div class="order-item">
+                <div>
+                    <h4 class="font-semibold">Order #12346</h4>
+                    <p class="text-gray-600">Premium Leather Jacket - $149.99</p>
+                    <p class="text-sm text-gray-500">Ordered on: 2023-10-20</p>
+                </div>
+                <div class="text-right">
+                    <span class="text-yellow-600 font-semibold">In Transit</span>
+                    <button class="ml-4 text-blue-600 hover:text-blue-800">View Details</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Wishlist -->
+        <div id="wishlist" class="profile-section">
+            <h2 class="section-title">Wishlist</h2>
+            <div class="wishlist-item">
+                <div class="flex items-center">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3f23d3d3-b13e-473b-af61-a8575d0c7b57.png" alt="Floral Summer Dress" class="w-16 h-16 object-cover rounded mr-4">
+                    <div>
+                        <h4 class="font-semibold">Floral Summer Dress</h4>
+                        <p class="text-gray-600">$79.99</p>
+                    </div>
+                </div>
+                <div>
+                    <button class="text-blue-600 hover:text-blue-800 mr-4">Add to Cart</button>
+                    <button class="text-red-600 hover:text-red-800">Remove</button>
+                </div>
+            </div>
+            <div class="wishlist-item">
+                <div class="flex items-center">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9a086dbd-31ad-44fd-8bef-8e8fa166db16.png" alt="Premium Leather Jacket" class="w-16 h-16 object-cover rounded mr-4">
+                    <div>
+                        <h4 class="font-semibold">Premium Leather Jacket</h4>
+                        <p class="text-gray-600">$149.99</p>
+                    </div>
+                </div>
+                <div>
+                    <button class="text-blue-600 hover:text-blue-800 mr-4">Add to Cart</button>
+                    <button class="text-red-600 hover:text-red-800">Remove</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Logout Section -->
+        <div class="profile-section">
+            <h2 class="section-title">Account Actions</h2>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                // In a real app, this would handle session termination
+                alert('Logged out successfully!');
+                window.location.href = 'login.html';
+            }
+        }
+        
+        // Add some interactivity
+        document.querySelectorAll('.wishlist-item button').forEach(button => {
+            button.addEventListener('click', function() {
+                if (this.textContent === 'Remove') {
+                    this.closest('.wishlist-item').remove();
+                    alert('Item removed from wishlist!');
+                } else if (this.textContent === 'Add to Cart') {
+                    alert('Item added to cart!');
+                }
+            });
+        });
+        
+        // Search functionality (similar to index.html)
+        const searchInput = document.querySelector('.search-bar');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                // For now, just log the search term
+                console.log('Searching for:', searchTerm);
+            });
+        }
+    </script>
+</body>
+</html>
